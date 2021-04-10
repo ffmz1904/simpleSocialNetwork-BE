@@ -10,13 +10,13 @@ module.exports = async (req, res, next) => {
         const user = await User.findOne({email});
 
         if (!user) {
-            next(ApiError.notFound('User not found!'));
+            return next(ApiError.notFound('User not found!'));
         }
 
-        const comparePassword = bcrypt.compareSync(password, user.password);
+        const comparePassword = await bcrypt.compare(password, user.password);
 
         if (!comparePassword) {
-            next(ApiError.badRequest('Bad password!'));
+            return next(ApiError.badRequest('Bad password!'));
         }
 
         const token = generateJWT(user.id, user.email);

@@ -6,14 +6,14 @@ module.exports = async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        next(ApiError.badRequest('Undefined email or password!'));
+        return next(ApiError.badRequest('Undefined email or password!'));
     }
 
     try {
         const candidate = await User.findOne({email});
 
         if (candidate) {
-            next(ApiError.badRequest('User already exist!'));
+            return next(ApiError.badRequest('User already exist!'));
         }
 
         const hashPassword = await bcrypt.hash(password, 5);
