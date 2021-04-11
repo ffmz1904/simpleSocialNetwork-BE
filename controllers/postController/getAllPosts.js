@@ -3,7 +3,7 @@ const { Types } = require('mongoose');
 const Post = require('../../models/Post');
 
 module.exports = async (req, res, next) => {
-    const {id} = req.params;
+    const {id} = req.query;
     const aggregationQuery = [];
 
     if (id) {
