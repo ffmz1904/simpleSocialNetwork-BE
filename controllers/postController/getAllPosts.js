@@ -10,26 +10,7 @@ module.exports = async (req, res, next) => {
         aggregationQuery.unshift({ $match: { userId: Types.ObjectId(id) } });
     }
 
-    aggregationQuery.push({ $unwind: {
-            path: '$comments',
-            preserveNullAndEmptyArrays: true
-        }},
-        { $lookup: {
-                from: 'comments',
-                localField: 'comments',
-                foreignField: '_id',
-                as: 'commentData'
-            }},
-        { $group: {
-                "_id": "$_id",
-                "title": { "$first": "$title" },
-                "body": { "$first": "$body" },
-                "userId": { "$first": "$userId" },
-                "comments": { "$push": "$commentData" },
-                "createdAt": { "$first": "$createdAt" },
-                "updatedAt": { "$first": "$updatedAt" },
-            }},
-        { $sort: {createdAt: -1} });
+    aggregationQuery.push({ $sort: {createdAt: -1} });
 
     try {
         const posts = await Post.aggregate(aggregationQuery);
