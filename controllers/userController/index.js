@@ -2,6 +2,7 @@ const registration = require('./registration');
 const login = require('./login');
 const check = require('./check');
 const getUserById = require('./getUserById');
+const getAllUsers = require('./getAllUsers');
 const create_subscribe_request = require('./create_subscribe_request');
 const confirm_subscribe_request = require('./confirm_subscribe_request');
 
@@ -10,6 +11,7 @@ module.exports = {
     login,
     check,
     getUserById,
+    getAllUsers,
     create_subscribe_request,
     confirm_subscribe_request
 };
