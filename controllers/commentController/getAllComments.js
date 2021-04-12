@@ -17,6 +17,10 @@ module.exports = async (req, res, next) => {
             foreignField: '_id',
             as: 'userData'
         }},
+        {"$unwind": {
+            "path": "$userData",
+            "preserveNullAndEmptyArrays": true
+        }},
         { $sort: { createdAt: -1 }}
     );
 
