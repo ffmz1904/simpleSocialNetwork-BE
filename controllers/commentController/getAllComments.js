@@ -20,8 +20,7 @@ module.exports = async (req, res, next) => {
         {"$unwind": {
             "path": "$userData",
             "preserveNullAndEmptyArrays": true
-        }},
-        { $sort: { createdAt: -1 }}
+        }}
     );
 
     try {
