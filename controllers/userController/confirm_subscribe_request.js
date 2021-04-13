@@ -32,8 +32,7 @@ module.exports = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            user,
-            friend
+            userFriends: user.friends
         });
     } catch (e) {
         next(ApiError.internal(e.message));

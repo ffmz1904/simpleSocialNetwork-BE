@@ -20,7 +20,8 @@ module.exports = async (req, res, next) => {
         await unsubscribedUser.save();
 
         res.status(200).json({
-            success: true
+            success: true,
+            userFriends: user.friends
         });
     } catch (e) {
         next(ApiError.internal(e.message));
