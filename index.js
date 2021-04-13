@@ -23,7 +23,7 @@ const start = async () => {
         });
 
         app.listen(PORT, () => {
-            console.log(`Serer has been started on localhost:${PORT}`);
+            console.log(`Server has been started on localhost:${PORT}`);
         });
     } catch (e) {
         console.log(e.message);
