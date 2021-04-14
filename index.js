@@ -7,15 +7,21 @@ const router = require('./routes');
 const errorHandler = require('./middlewares/ErrorHandlingMiddleware');
 const fileUpload = require('express-fileupload');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 app.use(fileUpload({}));
 app.use('/api', router);
+app.use('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+
 app.use(errorHandler);
+
 
 const start = async () => {
     try {
