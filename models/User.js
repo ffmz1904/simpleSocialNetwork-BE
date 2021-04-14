@@ -5,6 +5,7 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     name: { type: String, required: true },
     friends: { type: Array, default: [] },
+    img: { type: String, default: process.env.DEFAULT_USER_IMG }
 }, { versionKey: false });
 
 module.exports = model('User', userSchema);
