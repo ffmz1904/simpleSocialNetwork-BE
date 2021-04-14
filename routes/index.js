@@ -1,7 +1,11 @@
 const Router = require('express');
-
 const router = new Router();
+const userRouter = require('./userRouter');
+const postRouter = require('./postRouter');
+const commentRouter = require('./commentRouter');
 
-router.get('/', (req, res) => { res.status(200).json('test route') });
+router.use('/user', userRouter);
+router.use('/post', postRouter);
+router.use('/comment', commentRouter);
 
 module.exports = router;
