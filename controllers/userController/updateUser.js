@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
         }
 
         if (update.password) {
-            const oldPassword = await User.findOne({ _id: userId }, { password: 1, _id: 0});
+            const oldPassword = await User.findOne({ _id: userId }, { password: 1, _id: 0}).select('+password');
             const comparePassword = await bcrypt.compare(update.oldPassword, oldPassword.password);
 
             if (!comparePassword) {
